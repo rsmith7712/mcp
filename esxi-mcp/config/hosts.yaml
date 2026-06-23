@@ -1,0 +1,21 @@
+# ESXi host configuration
+# Each host entry defines a named ESXi host the MCP server can connect to.
+# Credentials can also be set via environment variables (see .env.example).
+
+hosts:
+  ESX-01:
+    host: "10.0.0.11"
+    port: 443
+    username: "root"
+    # password: set via ESXI_ESX_01_PASSWORD environment variable
+    ssl_verify: false         # ESXi uses self-signed certs by default
+
+  ESX-02:
+    host: "10.0.0.12"
+    port: 443
+    username: "root"
+    # password: set via ESXI_ESX_02_PASSWORD environment variable
+    ssl_verify: false         # ESXi uses self-signed certs by default
+
+# Default host to use when no host is specified in a tool call
+default_host: "ESX-01"
