@@ -98,8 +98,8 @@ With the virtual environment active, run:
 
 You should see startup log lines confirming it loaded both hosts. Press Ctrl+C to stop.
 If you see a connection error, verify:
-- The ESXi host is reachable: `ping 192.168.100.201`
-- Port 443 is accessible: `Test-NetConnection 192.168.100.201 -Port 443`
+- The ESXi host is reachable: `ping 10.0.0.11`
+- Port 443 is accessible: `Test-NetConnection 10.0.0.11 -Port 443`
 - Your credentials are correct
 
 ## Step 6 — Add to Claude Desktop
