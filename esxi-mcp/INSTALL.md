@@ -5,25 +5,24 @@ TL/DR:	MCP server for VMware ESXi 6.7 host management
 
 DEETS: 	Gives Claude Desktop and Claude Code direct read/write access to your VMware ESXi 6.7 hosts.
 
-=============================================================================================
-| Tool							| Ability													|
-| ============================= | =========================================================	|
-| `esxi_list_hosts`				| list configured hosts										|
-| `esxi_host_summary`			| CPU, memory, hardware, uptime, overall status				|
-| `esxi_host_licensing`			| license edition, features, expiration						|
-| `esxi_host_network`			| physical NICs, vSwitches, port groups, VMkernel adapters	|
-| `esxi_host_events`			| recent host event log										|
-| `esxi_list_vms`				| VM inventory with power state, OS, IP						|
-| `esxi_vm_detail`				| disk layout, NIC config, live metrics, snapshot count		|
-| `esxi_vm_power`				| power on/off/reset/suspend/shutdown/reboot VMs			|
-| `esxi_vm_migrate`				| cold-migrate VM to a different datastore (VM must be off)	|
-| `esxi_list_datastores`		| capacity, free space, usage per datastore					|
-| `esxi_datastore_files`		| browse files in a datastore directory						|
-| `esxi_vm_snapshot_list`		| list VM snapshots											|
-| `esxi_vm_snapshot_create`		| create a snapshot											|
-| `esxi_vm_snapshot_revert`		| revert to a snapshot										|
-| `esxi_vm_snapshot_delete`		| delete a snapshot											|
-=============================================================================================
+
+Tool -- Ability
+- `esxi_list_hosts` -- List configured hosts
+- `esxi_host_summary` -- CPU, memory, hardware, uptime, overall status
+- `esxi_host_licensing` -- License edition, features, expiration
+- `esxi_host_network` -- Physical NICs, vSwitches, port groups, VMkernel adapters
+- `esxi_host_events` -- Recent host event log
+- `esxi_list_vms` -- VM inventory with power state, OS, IP
+- `esxi_vm_detail` -- Disk layout, NIC config, live metrics, snapshot count
+- `esxi_vm_power` -- Power on/off/reset/suspend/shutdown/reboot VMs
+- `esxi_vm_migrate` -- Cold-migrate VM to a different datastore (VM must be off)
+- `esxi_list_datastores` -- Capacity, free space, usage per datastore
+- `esxi_datastore_files` -- Browse files in a datastore directory
+- `esxi_vm_snapshot_list` -- List VM snapshots
+- `esxi_vm_snapshot_create` -- Create a snapshot
+- `esxi_vm_snapshot_revert` -- Revert to a snapshot
+- `esxi_vm_snapshot_delete` -- Delete a snapshot
+
 
 > **Note on vMotion and HA:** Live vMotion between hosts and HA cluster management
 > require vCenter Server, which is not configured. Cold migration (VM powered off)
@@ -118,7 +117,7 @@ you placed the project and where Python is in your venv):
     "esxi": {
       "command": "C:\\AI\\mcp\\esxi-mcp\\.venv\\Scripts\\python.exe",
       "args": ["-m", "esxi_mcp.server"],
-      "cwd": "C:\\Sync\\AI\\mcp\\esxi-mcp",
+      "cwd": "C:\\AI\\mcp\\esxi-mcp",
       "env": {
         "ESXI_ESX_01_PASSWORD": "your_actual_password",
         "ESXI_ESX_02_PASSWORD": "your_actual_password"
@@ -185,12 +184,9 @@ To update dependencies:
 
 ## Troubleshooting
 
-=========================================================================================================================
-| Problem 							| Fix 																				|
-| =================================	| ================================================================================= |
-| `SSL: CERTIFICATE_VERIFY_FAILED`	| Set `ssl_verify: false` in hosts.yaml (ESXi uses self-signed certs) 				|
-| `vim.fault.InvalidLogin` 			| Check username/password in .env 													|
-| `Connection refused` on port 443	| Confirm ESXi web access is enabled: ESXi > Manage > Services > TSM-SSH / HTTPS 	|
-| `VM 'name' not found` 			| VM names are case-sensitive; use `esxi_list_vms` to confirm exact name 			|
-| Tool not appearing in Claude 		| Restart Claude Desktop after config changes 										|
-=========================================================================================================================
+Problem -- Fix
+- `SSL: CERTIFICATE_VERIFY_FAILED` -- Set `ssl_verify: false` in hosts.yaml (ESXi uses self-signed certs)
+- `vim.fault.InvalidLogin` -- Check username/password in .env
+- `Connection refused` on port 443 -- Confirm ESXi web access is enabled: ESXi > Manage > Services > TSM-SSH / HTTPS
+- `VM 'name' not found` -- VM names are case-sensitive; use `esxi_list_vms` to confirm exact name
+- Tool not appearing in Claude -- Restart Claude Desktop after config changes
